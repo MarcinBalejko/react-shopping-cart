@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Message from "./Message";
 import ProductItem from "./ProductItem";
+import CartFooter from "./CartFooter";
 
 const Cart = ({ products, setProducts, cartProducts, addToCart }) => {
   const [shippingPrice, setShippingPrice] = useState(23.8);
@@ -67,10 +68,7 @@ const Cart = ({ products, setProducts, cartProducts, addToCart }) => {
         </div>
 
         {/* FOOTER */}
-        <hr></hr>
-        <div className="cart-container__prod-footer">
-          <button className="update-cart-btn btn">Update Shopping Cart</button>
-        </div>
+        <CartFooter updateSubtotal={updateSubtotal} />
       </div>
 
       {/* SHIPPING SCREEN */}
