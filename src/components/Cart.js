@@ -5,13 +5,7 @@ import ProductItem from "./ProductItem";
 import CartFooter from "./CartFooter";
 import ShippingScreen from "./ShippingScreen";
 
-const Cart = ({
-  products,
-  setProducts,
-  cartProducts,
-  addToCart,
-  removeProductHandler,
-}) => {
+const Cart = ({ products, cartProducts, removeProductHandler }) => {
   const [shippingPrice, setShippingPrice] = useState(23.8);
   const [subtotal, setSubtotal] = useState(0);
   const [grandtotal, setGrandtotal] = useState(0);
@@ -26,11 +20,17 @@ const Cart = ({
   }, [subtotal]);
 
   useEffect(() => {
-    setSubtotal(prodsPrice.toFixed(2));
+    // setSubtotal(prodsPrice.toFixed(2));
+    setSubtotal(prodsPrice);
   }, [removedProductPrice]);
 
   const updateSubtotal = () => {
-    setSubtotal(prodsPrice.toFixed(2));
+    // setSubtotal(prodsPrice.toFixed(2));
+    setSubtotal(prodsPrice);
+    updateShippingPrice();
+  };
+
+  const updateShippingPrice = () => {
     if (subtotal > 100) {
       setShippingPrice(0);
     } else {
@@ -43,7 +43,8 @@ const Cart = ({
     prodsPrice > 100
       ? (currentShippingPrice = 0)
       : (currentShippingPrice = 23.8);
-    setGrandtotal((prodsPrice + currentShippingPrice).toFixed(2));
+    // setGrandtotal((prodsPrice + currentShippingPrice).toFixed(2));
+    setGrandtotal(prodsPrice + currentShippingPrice);
   };
 
   const setCurrentProdsPrice = (productprice, operation) => {
@@ -105,7 +106,6 @@ const Cart = ({
 Cart.propTypes = {
   products: PropTypes.array.isRequired,
   cartProducts: PropTypes.array.isRequired,
-  addToCart: PropTypes.func.isRequired,
   removeProductHandler: PropTypes.func.isRequired,
 };
 

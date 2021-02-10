@@ -15,15 +15,11 @@ function App() {
     updateMatchingProducts();
   }, []);
 
-  console.log(matchingProducts);
-
   const cartProdsIds = () => cartProducts.map((item) => item.productId);
-  console.log(cartProdsIds());
 
   const findMatchingProducts = () => {
     return shopProducts.filter((prod) => cartProdsIds().includes(prod.id));
   };
-  console.log(findMatchingProducts());
 
   const updateMatchingProducts = () => {
     setMatchingProducts(findMatchingProducts());
@@ -38,24 +34,25 @@ function App() {
     );
 
     setMatchingProducts(remainingProducts);
-    console.log(remainingProducts);
   };
 
   return (
-    <>
-      <Header />
-      {matchingProducts.length !== 0 ? (
-        <Cart
-          products={matchingProducts}
-          setProducts={setShopProducts}
-          cartProducts={cartProducts}
-          addToCart={setCartProducts}
-          removeProductHandler={removeMatchingProductFromCart}
-        />
-      ) : (
-        "You have not selected any products yet"
-      )}
-    </>
+    <Router>
+      <>
+        <Header />
+        {matchingProducts.length !== 0 ? (
+          <Cart
+            products={matchingProducts}
+            setProducts={setShopProducts}
+            cartProducts={cartProducts}
+            addToCart={setCartProducts}
+            removeProductHandler={removeMatchingProductFromCart}
+          />
+        ) : (
+          "You have not selected any products yet"
+        )}
+      </>
+    </Router>
   );
 }
 
