@@ -1,5 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 
 const ShippingScreen = ({ shippingPrice, subtotal, grandtotal }) => {
   return (
@@ -25,9 +26,11 @@ const ShippingScreen = ({ shippingPrice, subtotal, grandtotal }) => {
               </span>
             </div>
             <div className="ship-checkout">
-              <button className="ship-checkout-btn btn">
-                Proceed to checkout
-              </button>
+              <Link to={"/checkout"}>
+                <button className="ship-checkout-btn btn">
+                  Proceed to checkout
+                </button>
+              </Link>
             </div>
           </div>
         </div>

@@ -42,42 +42,28 @@ function App() {
 
   return (
     <Router>
-      <>
-        <Header />
-        <Switch>
-          {matchingProducts.length !== 0 ? (
-            <Route
-              path="/"
-              render={(props) => (
-                <Cart
-                  {...props}
-                  products={matchingProducts}
-                  setProducts={setShopProducts}
-                  cartProducts={cartProducts}
-                  addToCart={setCartProducts}
-                  removeProductHandler={removeMatchingProductFromCart}
-                />
-              )}
-              exact
-            />
-          ) : (
-            <Route path="/" component={EmptyMessage} />
-          )}
-          <Route path="/checkout" component={CheckoutMessage} />
-        </Switch>
-
-        {/* {matchingProducts.length !== 0 ? (
-          <Cart
-            products={matchingProducts}
-            setProducts={setShopProducts}
-            cartProducts={cartProducts}
-            addToCart={setCartProducts}
-            removeProductHandler={removeMatchingProductFromCart}
+      <Header />
+      <Switch>
+        {matchingProducts.length !== 0 ? (
+          <Route
+            path="/"
+            render={(props) => (
+              <Cart
+                {...props}
+                products={matchingProducts}
+                setProducts={setShopProducts}
+                cartProducts={cartProducts}
+                addToCart={setCartProducts}
+                removeProductHandler={removeMatchingProductFromCart}
+              />
+            )}
+            exact
           />
         ) : (
-          "You have not selected any products yet"
-        )} */}
-      </>
+          <Route path="/" component={EmptyMessage} />
+        )}
+        <Route path="/checkout" component={CheckoutMessage} />
+      </Switch>
     </Router>
   );
 }

@@ -8,7 +8,6 @@ const ProductItem = ({
   changeCurrentProdsPrice,
   updateSubtotal,
 }) => {
-  // const [prodRetailPrice, setProdRetailPrice] = useState("");
   const [prodQty, setProdQty] = useState("");
   const [initialRender, setInitialRender] = useState(false);
 
