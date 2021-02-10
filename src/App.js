@@ -9,7 +9,7 @@ import cartProd from "./data/cart_products.json";
 function App() {
   const [shopProducts, setShopProducts] = useState(products);
   const [cartProducts, setCartProducts] = useState(cartProd);
-  const [matchingProducts, setMatchingProducts] = useState();
+  const [matchingProducts, setMatchingProducts] = useState([]);
 
   useEffect(() => {
     updateMatchingProducts();
@@ -32,7 +32,7 @@ function App() {
   return (
     <>
       <Header />
-      {matchingProducts !== undefined ? (
+      {matchingProducts.length !== 0 ? (
         <Cart
           products={matchingProducts}
           setProducts={setShopProducts}
@@ -40,7 +40,7 @@ function App() {
           addToCart={setCartProducts}
         />
       ) : (
-        "nomatchingprods"
+        "You have not selected any products yet"
       )}
     </>
   );

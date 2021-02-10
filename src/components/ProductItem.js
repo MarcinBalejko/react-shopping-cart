@@ -6,12 +6,20 @@ const ProductItem = ({
   cart,
   deleteProduct,
   changeCurrentProdsPrice,
+  updateSubtotal,
 }) => {
   const [prodQty, setProdQty] = useState("");
 
   useEffect(() => {
     findProductInCart();
   }, []);
+
+  useEffect(() => {
+    if (prodQty > 0) {
+      changeCurrentProdsPrice(prodQty * product.price, "plus");
+      updateSubtotal();
+    }
+  }, [prodQty]);
 
   const findProductInCart = async () => {
     try {
@@ -86,8 +94,8 @@ ProductItem.propTypes = {
   product: PropTypes.object.isRequired,
   cart: PropTypes.array.isRequired,
   deleteProduct: PropTypes.func.isRequired,
-  products: PropTypes.array.isRequired,
   changeCurrentProdsPrice: PropTypes.func.isRequired,
+  updateSubtotal: PropTypes.func.isRequired,
 };
 
 export default ProductItem;
