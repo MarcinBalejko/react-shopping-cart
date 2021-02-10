@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import Message from "./Message";
 import ProductItem from "./ProductItem";
 import CartFooter from "./CartFooter";
 import ShippingScreen from "./ShippingScreen";
@@ -20,12 +19,10 @@ const Cart = ({ products, cartProducts, removeProductHandler }) => {
   }, [subtotal]);
 
   useEffect(() => {
-    // setSubtotal(prodsPrice.toFixed(2));
     setSubtotal(prodsPrice);
   }, [removedProductPrice]);
 
   const updateSubtotal = () => {
-    // setSubtotal(prodsPrice.toFixed(2));
     setSubtotal(prodsPrice);
     updateShippingPrice();
   };
@@ -43,7 +40,6 @@ const Cart = ({ products, cartProducts, removeProductHandler }) => {
     prodsPrice > 100
       ? (currentShippingPrice = 0)
       : (currentShippingPrice = 23.8);
-    // setGrandtotal((prodsPrice + currentShippingPrice).toFixed(2));
     setGrandtotal(prodsPrice + currentShippingPrice);
   };
 
@@ -56,10 +52,6 @@ const Cart = ({ products, cartProducts, removeProductHandler }) => {
       setProdsPrice(prodsPrice - productprice);
       setRemovedProductPrice(prodsPrice - productprice);
     }
-  };
-
-  const checkoutHandler = () => {
-    "";
   };
 
   return (
@@ -88,12 +80,8 @@ const Cart = ({ products, cartProducts, removeProductHandler }) => {
             <div className="no-prod-found">No products selected</div>
           )}
         </div>
-
-        {/* FOOTER */}
         <CartFooter updateSubtotal={updateSubtotal} />
       </div>
-
-      {/* SHIPPING SCREEN */}
       <ShippingScreen
         shippingPrice={shippingPrice}
         subtotal={subtotal}

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Header from "./components/Header";
 import Cart from "./components/Cart";
+import EmptyMessage from "./components/Messages/EmptyMessage";
+import CheckoutMessage from "./components/Messages/CheckoutMessage";
 import products from "./data/products.json";
 import cartProd from "./data/cart_products.json";
 
@@ -14,6 +16,8 @@ function App() {
   useEffect(() => {
     updateMatchingProducts();
   }, []);
+
+  const showCheckoutMessage = () => {};
 
   const cartProdsIds = () => cartProducts.map((item) => item.productId);
 
@@ -40,7 +44,29 @@ function App() {
     <Router>
       <>
         <Header />
-        {matchingProducts.length !== 0 ? (
+        <Switch>
+          {matchingProducts.length !== 0 ? (
+            <Route
+              path="/"
+              render={(props) => (
+                <Cart
+                  {...props}
+                  products={matchingProducts}
+                  setProducts={setShopProducts}
+                  cartProducts={cartProducts}
+                  addToCart={setCartProducts}
+                  removeProductHandler={removeMatchingProductFromCart}
+                />
+              )}
+              exact
+            />
+          ) : (
+            <Route path="/" component={EmptyMessage} />
+          )}
+          <Route path="/checkout" component={CheckoutMessage} />
+        </Switch>
+
+        {/* {matchingProducts.length !== 0 ? (
           <Cart
             products={matchingProducts}
             setProducts={setShopProducts}
@@ -50,7 +76,7 @@ function App() {
           />
         ) : (
           "You have not selected any products yet"
-        )}
+        )} */}
       </>
     </Router>
   );
