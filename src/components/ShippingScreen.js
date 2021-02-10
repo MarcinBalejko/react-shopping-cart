@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-const ShippingScreen = ({ shippingPrice, subtotal }) => {
+const ShippingScreen = ({ shippingPrice, subtotal, grandtotal }) => {
   return (
     <div className="cart-container__ship-screen">
       <div className="cart-container__ship-content">
@@ -20,7 +20,7 @@ const ShippingScreen = ({ shippingPrice, subtotal }) => {
             </div>
             <div className="grand-total-display">
               <span>Grand Total</span>
-              <span className="grand-total-price">$23.80</span>
+              <span className="grand-total-price">${grandtotal}</span>
             </div>
             <div className="ship-checkout">
               <button className="ship-checkout-btn btn">
@@ -37,6 +37,7 @@ const ShippingScreen = ({ shippingPrice, subtotal }) => {
 ShippingScreen.propTypes = {
   shippingPrice: PropTypes.number.isRequired,
   subtotal: PropTypes.number.isRequired,
+  grandtotal: PropTypes.number.isRequired,
 };
 
 export default ShippingScreen;

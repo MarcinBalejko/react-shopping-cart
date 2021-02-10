@@ -5,26 +5,45 @@ import ProductItem from "./ProductItem";
 import CartFooter from "./CartFooter";
 import ShippingScreen from "./ShippingScreen";
 
-const Cart = ({ products, setProducts, cartProducts, addToCart }) => {
+const Cart = ({
+  products,
+  setProducts,
+  cartProducts,
+  addToCart,
+  removeProductHandler,
+}) => {
   const [shippingPrice, setShippingPrice] = useState(23.8);
   const [subtotal, setSubtotal] = useState(0);
-  const [grandTotal, setGrandTotal] = useState(0);
+  const [grandtotal, setGrandtotal] = useState(0);
   const [prodsPrice, setProdsPrice] = useState(0);
+  const [removedProductPrice, setRemovedProductPrice] = useState(0);
 
   useEffect(() => {
     console.log(prodsPrice);
     updateSubtotal();
+    updateGrandTotal();
     console.log(subtotal);
   }, [subtotal]);
 
-  // useEffect(() => {
-  //   console.log(prodsPrice);
-  //   updateSubtotal();
-  //   console.log(subtotal);
-  // }, [prodsPrice, subtotal]);
+  useEffect(() => {
+    setSubtotal(prodsPrice.toFixed(2));
+  }, [removedProductPrice]);
 
   const updateSubtotal = () => {
     setSubtotal(prodsPrice.toFixed(2));
+    if (subtotal > 100) {
+      setShippingPrice(0);
+    } else {
+      setShippingPrice(23.8);
+    }
+  };
+
+  const updateGrandTotal = () => {
+    let currentShippingPrice = shippingPrice;
+    prodsPrice > 100
+      ? (currentShippingPrice = 0)
+      : (currentShippingPrice = 23.8);
+    setGrandtotal((prodsPrice + currentShippingPrice).toFixed(2));
   };
 
   const setCurrentProdsPrice = (productprice, operation) => {
@@ -32,16 +51,10 @@ const Cart = ({ products, setProducts, cartProducts, addToCart }) => {
       return setProdsPrice(prodsPrice + productprice);
     } else if (operation === "minus") {
       return setProdsPrice(prodsPrice - productprice);
+    } else if (operation === "remove") {
+      setProdsPrice(prodsPrice - productprice);
+      setRemovedProductPrice(prodsPrice - productprice);
     }
-  };
-
-  const removeProductHandler = async (id) => {
-    const selectedProduct = await products.find((item) => item.id === id);
-    const remainingProducts = await products.filter(
-      (prod) => prod !== selectedProduct
-    );
-    setProducts(remainingProducts);
-    console.log(remainingProducts);
   };
 
   const checkoutHandler = () => {
@@ -80,7 +93,11 @@ const Cart = ({ products, setProducts, cartProducts, addToCart }) => {
       </div>
 
       {/* SHIPPING SCREEN */}
-      <ShippingScreen shippingPrice={shippingPrice} subtotal={subtotal} />
+      <ShippingScreen
+        shippingPrice={shippingPrice}
+        subtotal={subtotal}
+        grandtotal={grandtotal}
+      />
     </div>
   );
 };
@@ -89,6 +106,7 @@ Cart.propTypes = {
   products: PropTypes.array.isRequired,
   cartProducts: PropTypes.array.isRequired,
   addToCart: PropTypes.func.isRequired,
+  removeProductHandler: PropTypes.func.isRequired,
 };
 
 export default Cart;

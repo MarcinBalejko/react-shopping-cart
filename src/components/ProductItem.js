@@ -8,6 +8,7 @@ const ProductItem = ({
   changeCurrentProdsPrice,
   updateSubtotal,
 }) => {
+  // const [prodRetailPrice, setProdRetailPrice] = useState("");
   const [prodQty, setProdQty] = useState("");
   const [initialRender, setInitialRender] = useState(false);
 
@@ -36,7 +37,7 @@ const ProductItem = ({
     }
   };
 
-  const addToCart = () => {
+  const addOne = () => {
     if (prodQty < 10) {
       setProdQty(prodQty + 1);
       changeCurrentProdsPrice(product.price, "plus");
@@ -45,7 +46,7 @@ const ProductItem = ({
     }
   };
 
-  const removeFromCart = () => {
+  const subtractOne = () => {
     if (prodQty > 0) {
       setProdQty(prodQty - 1);
       changeCurrentProdsPrice(product.price, "minus");
@@ -54,23 +55,10 @@ const ProductItem = ({
     }
   };
 
-  // const addToCart = () => {
-  //   if (prodQty < 10) {
-  //     setProdQty(prodQty + 1);
-  //     changeCurrentProdsPrice(product.price, "plus");
-  //   } else {
-  //     return;
-  //   }
-  // };
-
-  // const removeFromCart = () => {
-  //   if (prodQty > 0) {
-  //     setProdQty(prodQty - 1);
-  //     changeCurrentProdsPrice(product.price, "minus");
-  //   } else {
-  //     return;
-  //   }
-  // };
+  const removeSelectedFromCart = (id) => {
+    changeCurrentProdsPrice(prodQty * product.price, "remove");
+    deleteProduct(id);
+  };
 
   return (
     <>
@@ -80,7 +68,7 @@ const ProductItem = ({
           <button
             className="product-item__cancel-btn"
             onClick={() => {
-              deleteProduct(product.id);
+              removeSelectedFromCart(product.id);
             }}
           >
             <img src={"../../images/x-img.png"} alt="cancel"></img>
@@ -92,11 +80,11 @@ const ProductItem = ({
         <div className="product-item__product-name">{product.name}</div>
         <div className="product-item__product-price">${product.price}</div>
         <div className="product-item__product-qty">
-          <button className="btn-minus btn" onClick={() => removeFromCart()}>
+          <button className="btn-minus btn" onClick={() => subtractOne()}>
             -
           </button>
           <span className="product-qty">{prodQty}</span>
-          <button className="btn-plus btn" onClick={() => addToCart()}>
+          <button className="btn-plus btn" onClick={() => addOne()}>
             +
           </button>
           <span>

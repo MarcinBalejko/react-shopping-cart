@@ -29,6 +29,18 @@ function App() {
     setMatchingProducts(findMatchingProducts());
   };
 
+  const removeMatchingProductFromCart = async (id) => {
+    const selectedProduct = await matchingProducts.find(
+      (item) => item.id === id
+    );
+    const remainingProducts = await matchingProducts.filter(
+      (prod) => prod !== selectedProduct
+    );
+
+    setMatchingProducts(remainingProducts);
+    console.log(remainingProducts);
+  };
+
   return (
     <>
       <Header />
@@ -38,6 +50,7 @@ function App() {
           setProducts={setShopProducts}
           cartProducts={cartProducts}
           addToCart={setCartProducts}
+          removeProductHandler={removeMatchingProductFromCart}
         />
       ) : (
         "You have not selected any products yet"
