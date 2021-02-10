@@ -6,7 +6,12 @@ const CartFooter = ({ updateSubtotal }) => {
     <>
       <hr></hr>
       <div className="cart-container__cart-footer">
-        <button className="update-cart-btn btn">Update Shopping Cart</button>
+        <button
+          className="update-cart-btn btn"
+          onClick={() => updateSubtotal()}
+        >
+          Update Shopping Cart
+        </button>
       </div>
     </>
   );

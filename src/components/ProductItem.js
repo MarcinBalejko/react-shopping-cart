@@ -9,9 +9,13 @@ const ProductItem = ({
   updateSubtotal,
 }) => {
   const [prodQty, setProdQty] = useState("");
+  const [initialRender, setInitialRender] = useState(false);
 
   useEffect(() => {
     findProductInCart();
+    setTimeout(() => {
+      setInitialRender(true);
+    }, 100);
   }, []);
 
   useEffect(() => {
@@ -19,7 +23,7 @@ const ProductItem = ({
       changeCurrentProdsPrice(prodQty * product.price, "plus");
       updateSubtotal();
     }
-  }, [prodQty]);
+  }, [initialRender]);
 
   const findProductInCart = async () => {
     try {
@@ -49,6 +53,24 @@ const ProductItem = ({
       return;
     }
   };
+
+  // const addToCart = () => {
+  //   if (prodQty < 10) {
+  //     setProdQty(prodQty + 1);
+  //     changeCurrentProdsPrice(product.price, "plus");
+  //   } else {
+  //     return;
+  //   }
+  // };
+
+  // const removeFromCart = () => {
+  //   if (prodQty > 0) {
+  //     setProdQty(prodQty - 1);
+  //     changeCurrentProdsPrice(product.price, "minus");
+  //   } else {
+  //     return;
+  //   }
+  // };
 
   return (
     <>

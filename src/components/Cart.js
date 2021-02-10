@@ -15,7 +15,13 @@ const Cart = ({ products, setProducts, cartProducts, addToCart }) => {
     console.log(prodsPrice);
     updateSubtotal();
     console.log(subtotal);
-  }, [prodsPrice, subtotal]);
+  }, [subtotal]);
+
+  // useEffect(() => {
+  //   console.log(prodsPrice);
+  //   updateSubtotal();
+  //   console.log(subtotal);
+  // }, [prodsPrice, subtotal]);
 
   const updateSubtotal = () => {
     setSubtotal(prodsPrice.toFixed(2));
