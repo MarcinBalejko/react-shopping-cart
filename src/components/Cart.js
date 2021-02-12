@@ -15,7 +15,6 @@ const Cart = ({ products, cartProducts, removeProductHandler }) => {
   useEffect(() => {
     updateSubtotal();
     updateGrandTotal();
-    console.log("run");
   }, [subtotal]);
 
   //useEffect() Updating subtotal value in case a whole product got removed from the cart
