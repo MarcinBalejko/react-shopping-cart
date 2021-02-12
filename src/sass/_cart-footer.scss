@@ -1,0 +1,14 @@
+@media (max-width: 880px) {
+  .cart-container__cart-footer {
+    flex: 2;
+    @include centralize;
+    padding: 0;
+  }
+
+  .update-cart-btn {
+    width: 100%;
+    height: 80px;
+    padding: 20px;
+    margin: 0px auto 0px auto;
+  }
+}

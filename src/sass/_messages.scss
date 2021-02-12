@@ -1,0 +1,40 @@
+/* Messages */
+
+.message__go-back-btn {
+  margin-top: 5%;
+  width: 400px;
+  height: 70px;
+  padding: 0.5rem 1rem;
+  color: #fff;
+  background-color: #000;
+  @include btn-common;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.message-container {
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 10%;
+  padding: 20px 0 0 0;
+}
+
+.message {
+  border: 1px solid black;
+  height: 150px;
+
+  flex-direction: column;
+  @include centralize-space;
+}
+
+.message > div {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.message > div::first-line {
+  font-size: 1.1rem;
+}

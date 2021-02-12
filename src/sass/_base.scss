@@ -1,0 +1,27 @@
+// MIXINS
+
+@mixin btn-common {
+  outline: none;
+  border: none;
+}
+
+@mixin centralize {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin centralize-space {
+  display: flex;
+  justify-content: space-between;
+}
+
+@mixin total-style {
+  margin-left: 30%;
+  font-size: large;
+}
+
+//COLOR VARIABLES
+
+$smoke-color: rgb(201, 199, 199);
+$dark-color: rgb(80, 79, 79);
