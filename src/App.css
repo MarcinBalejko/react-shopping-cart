@@ -291,14 +291,30 @@ span.product-qty {
 }
 
 .message-container {
-  min-height: 100px;
+  height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  gap: 10%;
+  padding: 20px 0 0 0;
 }
 
 .message {
+  border: 1px solid black;
+  height: 150px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.message > div {
+  text-align: center;
+  margin-top: 25px;
+}
+
+.message > div::first-line {
+  font-size: 1.1rem;
 }
 
 /* MEDIA QUERIES */

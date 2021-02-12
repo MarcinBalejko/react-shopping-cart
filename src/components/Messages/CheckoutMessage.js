@@ -9,11 +9,17 @@ const CheckoutMessage = ({ setDisableHeaderBtn }) => {
 
   return (
     <div className="message-container">
-      <div className="message"></div>
-      <div>Your order has been submitted successfully!</div>
-      <Link to="/">
-        <button className="message__go-back-btn btn">Go Back</button>
-      </Link>
+      <div className="message">
+        <div>Your order has been submitted successfully!</div>
+        <Link to="/">
+          <button
+            className="message__go-back-btn btn"
+            onClick={() => setDisableHeaderBtn(false)}
+          >
+            Go Back
+          </button>
+        </Link>
+      </div>
     </div>
   );
 };

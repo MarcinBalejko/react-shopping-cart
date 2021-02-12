@@ -9,10 +9,12 @@ const EmptyMessage = ({ setDisableHeaderBtn }) => {
 
   return (
     <div className="message-container">
-      <div>No products in the cart</div>
-      <Link to="/">
-        <button className="message__go-back-btn btn">Back to shop</button>
-      </Link>
+      <div className="message">
+        <div>No products in the cart</div>
+        <Link to="/">
+          <button className="message__go-back-btn btn">Back to shop</button>
+        </Link>
+      </div>
     </div>
   );
 };
