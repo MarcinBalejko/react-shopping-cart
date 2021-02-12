@@ -12,12 +12,12 @@ function App() {
   const [shopProducts, setShopProducts] = useState(products);
   const [cartProducts, setCartProducts] = useState(cartProd);
   const [matchingProducts, setMatchingProducts] = useState([]);
+  const [disableHeaderBtn, setDisableHeaderBtn] = useState(false);
 
   useEffect(() => {
     updateMatchingProducts();
+    setDisableHeaderBtn(false);
   }, []);
-
-  const showCheckoutMessage = () => {};
 
   const cartProdsIds = () => cartProducts.map((item) => item.productId);
 
@@ -42,7 +42,7 @@ function App() {
 
   return (
     <Router>
-      <Header />
+      <Header disableHeaderBtn={disableHeaderBtn} />
       <Switch>
         {matchingProducts.length !== 0 ? (
           <Route
@@ -60,9 +60,27 @@ function App() {
             exact
           />
         ) : (
-          <Route path="/" component={EmptyMessage} />
+          <Route
+            path="/"
+            render={(props) => (
+              <EmptyMessage
+                {...props}
+                setDisableHeaderBtn={setDisableHeaderBtn}
+              />
+            )}
+            exact
+          />
         )}
-        <Route path="/checkout" component={CheckoutMessage} />
+        <Route
+          path="/checkout"
+          render={(props) => (
+            <CheckoutMessage
+              {...props}
+              setDisableHeaderBtn={setDisableHeaderBtn}
+            />
+          )}
+          exact
+        />
       </Switch>
     </Router>
   );

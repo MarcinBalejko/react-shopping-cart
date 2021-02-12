@@ -11,13 +11,14 @@ const Cart = ({ products, cartProducts, removeProductHandler }) => {
   const [prodsPrice, setProdsPrice] = useState(0);
   const [removedProductPrice, setRemovedProductPrice] = useState(0);
 
+  // useEffect() Updating subtotal and grandtotal values on start, in case sth is already in the cart
   useEffect(() => {
-    console.log(prodsPrice);
     updateSubtotal();
     updateGrandTotal();
-    console.log(subtotal);
+    console.log("run");
   }, [subtotal]);
 
+  //useEffect() Updating subtotal value in case a whole product got removed from the cart
   useEffect(() => {
     setSubtotal(prodsPrice);
   }, [removedProductPrice]);
@@ -28,11 +29,7 @@ const Cart = ({ products, cartProducts, removeProductHandler }) => {
   };
 
   const updateShippingPrice = () => {
-    if (subtotal > 100) {
-      setShippingPrice(0);
-    } else {
-      setShippingPrice(23.8);
-    }
+    subtotal > 100 ? setShippingPrice(0) : setShippingPrice(23.8);
   };
 
   const updateGrandTotal = () => {
