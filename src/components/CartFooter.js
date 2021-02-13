@@ -7,7 +7,7 @@ const CartFooter = ({ updateSubtotal }) => {
       <hr></hr>
       <div className="cart-container__cart-footer">
         <button
-          className="update-cart-btn btn"
+          className="update-cart-lower__btn btn"
           onClick={() => updateSubtotal()}
         >
           Update Shopping Cart

@@ -6,5 +6,5 @@ Building a responsive shopping cart with React and SASS.
 
 ```
 npm install
-npm run dev
+npm run start
 ```

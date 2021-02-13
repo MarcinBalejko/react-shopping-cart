@@ -15,19 +15,19 @@ const ShippingScreen = ({ shippingPrice, subtotal, grandtotal }) => {
             <p>CART TOTALS</p>
           </div>
           <div className="totals-wrapper">
-            <div className="subtotal-display">
+            <div className="subtotal__display">
               <span>Subtotal</span>
-              <span className="subtotal-price">${subtotal.toFixed(2)}</span>
+              <span className="subtotal__price">${subtotal.toFixed(2)}</span>
             </div>
-            <div className="grand-total-display">
+            <div className="grand-total__display">
               <span>Grand Total</span>
-              <span className="grand-total-price">
+              <span className="grand-total__price">
                 ${grandtotal.toFixed(2)}
               </span>
             </div>
             <div className="ship-checkout">
               <Link to={"/checkout"}>
-                <button className="ship-checkout-btn btn">
+                <button className="ship-checkout__btn btn">
                   Proceed to checkout
                 </button>
               </Link>

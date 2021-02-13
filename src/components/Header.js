@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 
 const Header = ({ disableHeaderBtn }) => {
   return (
-    <header>
-      <div className="header-items">
+    <header className="header">
+      <div className="header__items">
         <div className="header__brand">Shopping Cart</div>
 
         <Link to={"/checkout"}>
